@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  service1:
+    build: ./service1
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./service1:/app
+    tty: true
+
+  service2:
+    build: ./service2
+    ports:
+      - "50052:50052"
+    volumes:
+      - ./service2:/app
+    tty: true

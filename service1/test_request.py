@@ -5,7 +5,10 @@ import helloworld_pb2_grpc
 
 def run():
     # サーバーとの接続を作成します
-    channel = grpc.insecure_channel('localhost:50051')
+    channel = grpc.insecure_channel(
+        'localhost:50051',
+        options=[('grpc.max_receive_message_length', 1000 * 1024 * 1024)]
+    )
 
     # チャネルを使用してスタブを作成します
     stub = helloworld_pb2_grpc.GreeterStub(channel)
@@ -22,7 +25,7 @@ def run():
     time_end = time.time()
     # 経過時間（秒）
     tim = time_end- time_sta
-    print("経過時間（秒）：",tim)
+    print("経過時間（秒）：",tim)  # 大体4.5秒
 
 if __name__ == '__main__':
     run()

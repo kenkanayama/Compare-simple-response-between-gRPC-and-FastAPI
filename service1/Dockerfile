@@ -10,15 +10,10 @@ COPY . .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Generate Python gRPC code
-RUN python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./helloworld.proto
-
 # Make port 50051 available to the world outside this container
 EXPOSE 50051
 
-# Run server.py when the container launches
-# CMD ["python", "server/server.py"]
-# CMD ["python", "main.py"]
+# Install watchdog for auto-reload
+RUN pip install watchdog[watchmedo]
 
-# Generate Python gRPC code
-CMD python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./helloworld.proto && python server.py
+CMD chmod +x ./run.sh && ./run.sh

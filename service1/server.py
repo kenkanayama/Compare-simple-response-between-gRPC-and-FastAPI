@@ -1,5 +1,6 @@
 import grpc
 from concurrent import futures
+import sys
 import time
 
 # import the generated classes
@@ -7,12 +8,15 @@ import helloworld_pb2
 import helloworld_pb2_grpc
 
 # import the original helloworld.py
-import helloworld
+# import helloworld
 
 # create a class to define the server functions
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
     def SayHello(self, request, context):
-        return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
+        # return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
+        hello = 'Hello'*1000
+        print('return size', sys.getsizeof(hello))
+        return helloworld_pb2.HelloReply(message=hello)
 
 def serve():
     # create a gRPC server

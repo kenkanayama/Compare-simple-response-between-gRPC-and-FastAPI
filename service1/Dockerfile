@@ -18,4 +18,7 @@ EXPOSE 50051
 
 # Run server.py when the container launches
 # CMD ["python", "server/server.py"]
-CMD ["python", "main.py"]
+# CMD ["python", "main.py"]
+
+# Generate Python gRPC code
+CMD python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./helloworld.proto && python server.py

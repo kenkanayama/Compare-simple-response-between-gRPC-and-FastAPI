@@ -1,3 +1,4 @@
+import sys
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -14,4 +15,8 @@ def read_root():
 
 @app.post("/name/")
 def create_name(name: Name):
-    return {"message": f"Hello {name.name}!"}
+    hello = 'hello'*100000000
+    print('return size', sys.getsizeof(hello)) # だいたい470MB
+
+    # return {"message": f"Hello {name.name}!"}
+    return {"message": hello}

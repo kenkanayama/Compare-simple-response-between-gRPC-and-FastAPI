@@ -8,3 +8,11 @@ services:
     volumes:
       - ./service1:/app
     tty: true
+
+  python-fastapi-server:
+    build: ./service2
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./service2:/app
+    tty: true

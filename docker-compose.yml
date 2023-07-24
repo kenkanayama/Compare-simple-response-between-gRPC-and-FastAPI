@@ -2,17 +2,17 @@ version: '3.8'
 
 services:
   python-grpc-server:
-    build: ./service1
+    build: ./grpc-server
     ports:
       - "50051:50051"
     volumes:
-      - ./service1:/app
+      - ./grpc-server:/app
     tty: true
 
   python-fastapi-server:
-    build: ./service2
+    build: ./fastapi-server
     ports:
       - "8089:8089"
     volumes:
-      - ./service2:/app
+      - ./fastapi-server:/app
     tty: true
